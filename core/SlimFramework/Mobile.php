@@ -27,8 +27,13 @@
       return $result;
     }
 
-    public function pushAndriod($data)
+    public function pushAndroid($device_id, $message)
     {
+      $data = array(
+          'data'             => array("message" => $message),
+          'time_to_live'     => 86400,
+          'registration_ids' => $device_id
+      );
       $headers = array("Content-Type:"."application/json", "Authorization:"."key=".API_PUSH_KEY);
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -41,5 +46,26 @@
       $response = curl_exec($ch);
       curl_close($ch);
     }
+
+    public function pushIos($token, $mess)
+  	{
+  		require_once PATH_CORE.'/ApnsPHP/Autoload.php';
+  		$push = new \ApnsPHP_Push(
+  			\ApnsPHP_Abstract::ENVIRONMENT_SANDBOX,
+  			PATH_DESIGN.'/ios.pem'
+  		);
+  		$push->connect();
+  		$message = new \ApnsPHP_Message($token);
+  		$message->setCustomIdentifier("Message-Badge-3");
+  		$message->setBadge(3);
+  		$message->setText($mess['description']);
+  		$message->setSound();
+  		$message->setCustomProperty('data', $mess);
+  		$message->setExpiry(30);
+  		$push->add($message);
+  		$push->send();
+  		$push->disconnect();
+
+  	}
 
   }

@@ -40,6 +40,11 @@
     return new \Slim\Image();
   });
 
+  // Mobile Push
+  $app->container->singleton('mobile', function () {
+    return new \Slim\Mobile();
+  });
+
 
   function protect()
   {

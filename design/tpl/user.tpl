@@ -1,4 +1,4 @@
-<form action="<?php echo URL_ROOT ?>admin/users/<?php echo (int)$user['user_id']?>" method="post">
+<form action="<?php echo URL_ROOT ?>admin/users/<?php echo (int)$user['user_id']?>" method="post" autocomplete="off">
   <div class="row">
     <div class="col-md-12">
       <p>
@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <div class="input-group dt">
-          <input type="text" name="user[dob]" placeholder="<?php echo $app->lang->get('Birth date')?>" value="<?php echo date(" d.m.Y", strtotime($user['user_dob']))?>" class="form-control dt">
+          <input type="text" name="user[dob]" placeholder="<?php echo $app->lang->get('Birth date')?>" value="<?php echo date(" d.m.Y", strtotime($user['user_dob'] == '0000-00-00' ? '1990-01-01' : $user['user_dob']))?>" class="form-control dt">
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
           </span>

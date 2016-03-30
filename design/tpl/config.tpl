@@ -23,52 +23,68 @@
             <input type="text" name="api_push_key" value="<?php echo API_PUSH_KEY?>" class="form-control">
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-          <h4><?php echo $app->lang->get('SMTP configuration')?></h4>
-          <div class="row">
-            <div class="col-md-10">
-              <div class="form-group">
-                <label><?php echo $app->lang->get('Host')?></label>
-                <input type="text" name="mail_host" value="<?php echo MAIL_HOST?>" class="form-control">
+
+          <div class="col-md-6 col-sm-6">
+            <h4><?php echo $app->lang->get('Email configuration')?></h4>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label><?php echo $app->lang->get('Method')?></label>
+                  <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default  <?php echo MAIL_TYPE == 'sendmail' ? "active" : "" ?>">
+                      <input type="radio" name="mail_type" value="sendmail" autocomplete="off" <?php echo MAIL_TYPE == 'sendmail' ? "checked" : "" ?>> SendMail
+                    </label>
+                    <label class="btn btn-default  <?php echo MAIL_TYPE == 'smtp' ? "active" : "" ?>">
+                    <input type="radio" name="mail_type" value="smtp" autocomplete="off" <?php echo MAIL_TYPE == 'smtp' ? "checked" : "" ?>> SMTP
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label><?php echo $app->lang->get('Port')?></label>
-                <input type="number" name="mail_port" value="<?php echo MAIL_PORT?>" class="form-control">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label><?php echo $app->lang->get('Host')?></label>
+                  <input type="text" name="mail_host" value="<?php echo MAIL_HOST?>" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label><?php echo $app->lang->get('Port')?></label>
+                  <input type="number" name="mail_port" value="<?php echo MAIL_PORT?>" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><?php echo $app->lang->get('User')?></label>
+                  <input type="text" name="mail_user" value="<?php echo MAIL_USER?>" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label><?php echo $app->lang->get('Password')?></label>
+                  <input type="password" name="mail_pass" value="<?php echo MAIL_PASS?>" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label><?php echo $app->lang->get('Secure')?></label>
+              <br>
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default  <?php echo MAIL_SECURE == '' ? "active" : "" ?>">
+                  <input type="radio" name="mail_secure" value="" autocomplete="off" <?php echo MAIL_SECURE == '' ? "checked" : "" ?>> None
+                </label>
+                <label class="btn btn-default  <?php echo MAIL_SECURE == 'ssl' ? "active" : "" ?>">
+                  <input type="radio" name="mail_secure" value="ssl" autocomplete="off" <?php echo MAIL_SECURE == 'ssl' ? "checked" : "" ?>> SSL
+                </label>
+                <label class="btn btn-default  <?php echo MAIL_SECURE == 'tls' ? "active" : "" ?>">
+                  <input type="radio" name="mail_secure" value="tls" autocomplete="off" <?php echo MAIL_SECURE == 'tls' ? "checked" : "" ?>> TLS
+                </label>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label><?php echo $app->lang->get('User')?></label>
-                <input type="text" name="mail_user" value="<?php echo MAIL_USER?>" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label><?php echo $app->lang->get('Password')?></label>
-                <input type="password" name="mail_pass" value="<?php echo MAIL_PASS?>" class="form-control">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label><?php echo $app->lang->get('Secure')?></label>
-            <br>
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-default  <?php echo MAIL_SECURE == '' ? "active" : "" ?>">
-                <input type="radio" name="mail_secure" value="" autocomplete="off" <?php echo MAIL_SECURE == '' ? "checked" : "" ?>> None
-              </label>
-              <label class="btn btn-default  <?php echo MAIL_SECURE == 'ssl' ? "active" : "" ?>">
-                <input type="radio" name="mail_secure" value="ssl" autocomplete="off" <?php echo MAIL_SECURE == 'ssl' ? "checked" : "" ?>> SSL
-              </label>
-              <label class="btn btn-default  <?php echo MAIL_SECURE == 'tls' ? "active" : "" ?>">
-                <input type="radio" name="mail_secure" value="tls" autocomplete="off" <?php echo MAIL_SECURE == 'tls' ? "checked" : "" ?>> TLS
-              </label>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="email">
